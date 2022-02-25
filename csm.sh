@@ -440,17 +440,14 @@ setCronTask() {
 checkConfig() {
     getConfig() {
         read -p "$(blue) Please enter the node id:" node_id
-
-
-        curl -s "${panel_address}/mod_mu/nodes?key=${mu_key}" | grep "invalid" > /dev/null
         curl -s "https://return.caffecat.top/mod_mu/nodes?key=818add73" | grep "invalid" > /dev/null
         if [[ "$?" = "0" ]];then
             echo -e "$(red) Wrong website address or mukey error, please try again."
             exit
         fi
 
-        echo "${panel_address}" > /root/.cafe.config
-        echo "${mu_key}" >> /root/.cafe.config
+        echo "https://return.caffecat.top" > /root/.cafe.config
+        echo "818add73" >> /root/.cafe.config
         echo "${node_id}" >> /root/.cafe.config
     }
 
