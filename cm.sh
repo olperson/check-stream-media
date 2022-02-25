@@ -396,13 +396,13 @@ setCronTask() {
         execution_time_interval=$1
         
         crontab -l >/root/crontab.list
-        echo "0 */${execution_time_interval} * * * /bin/bash /root/csm.sh" >>/root/crontab.list
+        echo "0 */${execution_time_interval} * * * /bin/bash /root/cm.sh" >>/root/crontab.list
         crontab /root/crontab.list
         rm -rf /root/crontab.list
         echo -e "$(green) The scheduled task is added successfully."
     }
 
-    crontab -l | grep "csm.sh" >/dev/null
+    crontab -l | grep "cm.sh" >/dev/null
     if [[ "$?" != "0" ]]; then
         echo "[1] 1 hour"
         echo "[2] 2 hour"
