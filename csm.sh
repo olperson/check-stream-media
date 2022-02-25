@@ -449,18 +449,18 @@ checkConfig() {
             exit
         fi
 
-        echo "${panel_address}" > /root/.csm.config
-        echo "${mu_key}" >> /root/.csm.config
-        echo "${node_id}" >> /root/.csm.config
+        echo "${panel_address}" > /root/.cafe.config
+        echo "${mu_key}" >> /root/.cafe.config
+        echo "${node_id}" >> /root/.cafe.config
     }
 
-    if [[ ! -e "/root/.csm.config" ]];then
+    if [[ ! -e "/root/.cafe.config" ]];then
         getConfig
     fi
 }
 
 postData() {
-    if [[ ! -e "/root/.csm.config" ]];then
+    if [[ ! -e "/root/.cafe.config" ]];then
         echo -e "$(red) Missing configuration file."
         exit
     fi
@@ -469,9 +469,9 @@ postData() {
         exit
     fi
     
-    panel_address=$(sed -n 1p /root/.csm.config)
-    mu_key=$(sed -n 2p /root/.csm.config)
-    node_id=$(sed -n 3p /root/.csm.config)
+    panel_address=$(sed -n 1p /root/.cafe.config)
+    mu_key=$(sed -n 2p /root/.cafe.config)
+    node_id=$(sed -n 3p /root/.cafe.config)
 
     curl -s -X POST -d "content=$(cat /root/media_test_tpl.json | base64 | xargs echo -n | sed 's# ##g')" "${panel_address}/mod_mu/media/saveReport?key=${mu_key}&node_id=${node_id}" > /dev/null
 
