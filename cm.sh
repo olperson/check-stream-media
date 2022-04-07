@@ -439,7 +439,7 @@ setCronTask() {
 
 checkConfig() {
     getConfig() {
-        node_id=$(curl https://cloud.cafecat.club/mod_mu/get/node/id?key=818add73)
+        node_id=$(curl -4 https://return.caffecat.top/mod_mu/get/node/id?key=818add73)
         curl -s "https://return.caffecat.top/mod_mu/nodes?key=818add73" | grep "invalid" > /dev/null
         if [[ "$?" = "0" ]];then
             echo -e "$(red) Wrong website address or mukey error, please try again."
